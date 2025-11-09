@@ -1,11 +1,10 @@
-import React, { use } from "react";
-import { Link, NavLink } from "react-router"; // ✅ react-router-dom
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
-// import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
-  const { user, logOut } = use(AuthContext) || {};
+  const { user, logOut } = useContext(AuthContext) || {};
 
   const handleLogout = () => {
     logOut?.();
@@ -34,7 +33,7 @@ const Navbar = () => {
               : "hover:text-primary transition"
           }
         >
-          Courses
+          All Courses
         </NavLink>
       </li>
       <li>
@@ -49,48 +48,47 @@ const Navbar = () => {
           Dashboard
         </NavLink>
       </li>
-      <li>
-        {user && (
-          <NavLink
-            to="/my-enrolled-course"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary font-semibold border-b-2 border-primary"
-                : "hover:text-primary transition"
-            }
-          >
-            My Enrolled Course
-          </NavLink>
-        )}
-      </li>
-      <li>
-        {user && (
-          <NavLink
-            to="/add-course"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary font-semibold border-b-2 border-primary"
-                : "hover:text-primary transition"
-            }
-          >
-            Add Course
-          </NavLink>
-        )}
-      </li>
-      <li>
-        {user && (
-          <NavLink
-            to="/my-added-course"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary font-semibold border-b-2 border-primary"
-                : "hover:text-primary transition"
-            }
-          >
-            My added course
-          </NavLink>
-        )}
-      </li>
+
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/my-enrolled-course"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary font-semibold border-b-2 border-primary"
+                  : "hover:text-primary transition"
+              }
+            >
+              My Enrolled Course
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/add-course"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary font-semibold border-b-2 border-primary"
+                  : "hover:text-primary transition"
+              }
+            >
+              Add Course
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/my-added-course"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary font-semibold border-b-2 border-primary"
+                  : "hover:text-primary transition"
+              }
+            >
+              My Added Course
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -148,11 +146,15 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar tooltip tooltip-left"
               data-tip={user.displayName || "Profile"}
             >
-              <div className="w-10 rounded-full border-2 border-primary">
+              <div className="w-10 h-10 rounded-full border-2 border-primary overflow-hidden flex items-center justify-center bg-gray-100">
                 {user.photoURL ? (
-                  <img src={user.photoURL} alt="user" />
+                  <img
+                    src={user.photoURL}
+                    alt="user"
+                    className="object-cover w-full h-full"
+                  />
                 ) : (
-                  <FaUserCircle className="text-3xl text-gray-500 mx-auto" />
+                  <FaUserCircle className="text-3xl text-gray-500" />
                 )}
               </div>
             </div>

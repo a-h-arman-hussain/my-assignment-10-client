@@ -17,7 +17,11 @@ const router = createBrowserRouter([
     Component: MainLayout,
     children: [
       { index: true, Component: Home },
-      { path: "/courses", Component: Courses },
+      {
+        path: "/courses",
+        Component: Courses,
+        loader: () => fetch("http://localhost:4000/courses"),
+      },
       {
         path: "/dashboard",
         Component: Dashboard,
