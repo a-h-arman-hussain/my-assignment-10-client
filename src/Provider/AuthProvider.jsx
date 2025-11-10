@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
   // Forgot Password
   const forgotPassword = (email) => {
     if (!email) {
-      toast.error("Please provide an email address.");
+      alert("Please provide an email address.");
       return;
     }
     return sendPasswordResetEmail(auth, email);

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const CourseCard = ({ course }) => {
   return (
@@ -34,9 +35,12 @@ const CourseCard = ({ course }) => {
         </div>
 
         {/* Enroll Button */}
-        <button className="mt-auto w-full bg-primary text-white py-2 rounded-xl hover:bg-primary/90 transition-colors duration-300">
-          Enroll Now
-        </button>
+        <Link
+          to={`/course-details/${course._id}`}
+          className="mt-auto w-full bg-primary text-white text-center py-2 rounded-xl hover:bg-primary/90 transition-colors duration-300"
+        >
+          View Details
+        </Link>
       </div>
     </div>
   );

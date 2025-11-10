@@ -10,17 +10,21 @@ import PrivetRoute from "../Provider/PrivateRoute";
 import MyEnrolledCourse from "../Pages/MyEnrolledCourse";
 import AddCourse from "../Pages/AddCourse";
 import MyAddedCourse from "../Pages/MyAddedCourse";
+import CourseDetails from "../Pages/CourseDetails";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
     children: [
-      { index: true, Component: Home },
+      {
+        index: true,
+        Component: Home,
+      },
       {
         path: "/courses",
         Component: Courses,
-        loader: () => fetch("http://localhost:4000/courses"),
       },
       {
         path: "/dashboard",
@@ -50,6 +54,16 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
       },
+      {
+        path: "/course-details/:id",
+        element: (
+          <PrivetRoute>
+            <CourseDetails></CourseDetails>
+          </PrivetRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/courses/${params.id}`),
+      },
     ],
   },
   {
@@ -59,6 +73,10 @@ const router = createBrowserRouter([
       { path: "/auth/login", Component: Login },
       { path: "/auth/register", Component: Register },
     ],
+  },
+  {
+    path: "/*",
+    Component: ErrorPage,
   },
 ]);
 
