@@ -5,21 +5,24 @@ import ErrorPage from "./ErrorPage";
 
 const MyEnrolledCourse = () => {
   const { myEnrolledCourse, loading, error } = useCourses();
+  console.log(myEnrolledCourse, loading, error);
 
   if (loading) return <Loader />;
   if (error) return <ErrorPage />;
+
+  if (!myEnrolledCourse || myEnrolledCourse.length === 0) {
+    return (
+      <div className="text-center py-12 text-gray-500 text-lg">
+        You have not enrolled in any courses yet.
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
         My Enrolled Courses
       </h1>
-
-      {myEnrolledCourse.length === 0 && (
-        <p className="text-center text-gray-500 text-lg">
-          You have not enrolled in any courses yet.
-        </p>
-      )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {myEnrolledCourse.map((course) => (
@@ -34,6 +37,7 @@ const MyEnrolledCourse = () => {
                 alt={course.title}
                 className="w-full h-48 object-cover"
               />
+
               <span className="absolute top-3 left-3 bg-primary/90 text-white text-xs font-semibold px-3 py-1 rounded-full">
                 {course.category}
               </span>
@@ -44,17 +48,16 @@ const MyEnrolledCourse = () => {
               <h2 className="text-lg font-bold text-gray-800 truncate">
                 {course.title}
               </h2>
-              <p className="text-sm text-gray-500">
-                {course.description.slice(0, 80)}...
-              </p>
-
               <div className="flex justify-between items-center mt-2 text-gray-700">
-                <span className="text-sm">{course.duration}</span>
+                <span className="text-sm">{course.duration || "N/A"}</span>
                 <span className="text-sm font-semibold">৳{course.price}</span>
               </div>
 
               <div className="text-xs text-gray-400 mt-1">
-                Enrolled on: {new Date(course.enrolled_at).toLocaleDateString()}
+                Enrolled on:{" "}
+                {course.enrolled_at
+                  ? new Date(course.enrolled_at).toLocaleDateString()
+                  : "N/A"}
               </div>
             </div>
           </div>

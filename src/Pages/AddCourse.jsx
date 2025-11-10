@@ -1,9 +1,9 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const AddCourse = () => {
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,16 +20,14 @@ const AddCourse = () => {
       created_by: user?.email,
       created_ad: new Date(),
     };
+
     fetch("http://localhost:4000/courses", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then(() => {
         Swal.fire({
           icon: "success",
           title: `✅ ${formData.title}`,
@@ -37,14 +35,20 @@ const AddCourse = () => {
           timer: 2000,
           showConfirmButton: false,
         });
+        e.target.reset();
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Failed to add course",
+          text: "Something went wrong. Please try again.",
+        });
       });
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-12">
+    <div className="max-w-4xl mx-auto my-12 p-8 bg-white rounded-2xl shadow-lg">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Add a New Course
       </h1>
@@ -52,61 +56,63 @@ const AddCourse = () => {
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Title */}
         <div>
-          <label className="label font-medium">Course Title</label>
+          <label className="block font-semibold mb-1">Course Title</label>
           <input
             type="text"
             name="title"
             required
             placeholder="Full-Stack Web Development Bootcamp"
-            className="input input-bordered w-full"
+            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
         </div>
 
         {/* Image URL */}
         <div>
-          <label className="label font-medium">Image URL</label>
+          <label className="block font-semibold mb-1">Image URL</label>
           <input
             type="url"
             name="imageURL"
             required
             placeholder="https://example.com/course-image.jpg"
-            className="input input-bordered w-full"
+            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
         </div>
 
-        {/* Price */}
-        <div>
-          <label className="label font-medium">Price (৳)</label>
-          <input
-            type="number"
-            name="price"
-            required
-            placeholder="12000"
-            className="input input-bordered w-full"
-          />
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Price */}
+          <div>
+            <label className="block font-semibold mb-1">Price (৳)</label>
+            <input
+              type="number"
+              name="price"
+              required
+              placeholder="12000"
+              className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            />
+          </div>
 
-        {/* Duration */}
-        <div>
-          <label className="label font-medium">Duration</label>
-          <input
-            type="text"
-            name="duration"
-            required
-            placeholder="12 weeks"
-            className="input input-bordered w-full"
-          />
+          {/* Duration */}
+          <div>
+            <label className="block font-semibold mb-1">Duration</label>
+            <input
+              type="text"
+              name="duration"
+              required
+              placeholder="12 weeks"
+              className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            />
+          </div>
         </div>
 
         {/* Category */}
         <div>
-          <label className="label font-medium">Category</label>
+          <label className="block font-semibold mb-1">Category</label>
           <input
             list="categoryOptions"
             name="category"
             placeholder="Select or add category"
             required
-            className="input input-bordered w-full"
+            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
           <datalist id="categoryOptions">
             <option value="Web Development" />
@@ -117,44 +123,43 @@ const AddCourse = () => {
           </datalist>
         </div>
 
-        {/* 📅 Start Date */}
-        <div>
-          <label className="label font-medium">Course Start Date</label>
-          <input
-            type="date"
-            name="course_start_date"
-            required
-            className="input input-bordered w-full"
-          />
-        </div>
-
-        {/* 📅 End Date */}
-        <div>
-          <label className="label font-medium">Course End Date</label>
-          <input
-            type="date"
-            name="course_end_date"
-            required
-            className="input input-bordered w-full"
-          />
+        {/* Dates */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block font-semibold mb-1">Start Date</label>
+            <input
+              type="date"
+              name="course_start_date"
+              required
+              className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            />
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">End Date</label>
+            <input
+              type="date"
+              name="course_end_date"
+              required
+              className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            />
+          </div>
         </div>
 
         {/* Description */}
         <div>
-          <label className="label font-medium">Description</label>
+          <label className="block font-semibold mb-1">Description</label>
           <textarea
             name="description"
             required
             placeholder="Briefly describe the course..."
-            className="textarea textarea-bordered w-full"
+            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
             rows="4"
           ></textarea>
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
-          className="btn btn-primary w-full text-lg font-semibold"
+          className="w-full bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-600 transition-colors"
         >
           Add Course
         </button>

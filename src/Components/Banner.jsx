@@ -53,20 +53,15 @@ const Banner = () => {
       </div>
 
       {/* Animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes pulse-slow {
-          0%,
-          100% {
-            opacity: 0.2;
-          }
-          50% {
-            opacity: 0.4;
-          }
-        }
+        0%, 100% { opacity: 0.2; }
+        50% { opacity: 0.4; }
+    }
         .animate-pulse-slow {
-          animation: pulse-slow 8s ease-in-out infinite;
-        }
-      `}</style>
+        animation: pulse-slow 8s ease-in-out infinite;
+    }
+`}</style>
     </section>
   );
 };

@@ -12,6 +12,7 @@ import AddCourse from "../Pages/AddCourse";
 import MyAddedCourse from "../Pages/MyAddedCourse";
 import CourseDetails from "../Pages/CourseDetails";
 import ErrorPage from "../Pages/ErrorPage";
+import UpdateCourse from "../Pages/UpdateCourse";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +63,21 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/courses/${params.id}`),
+          fetch(
+            `https://my-assignment-10-server-1.onrender.com/courses/${params.id}`
+          ),
+      },
+      {
+        path: "/update-course/:id",
+        element: (
+          <PrivetRoute>
+            <UpdateCourse></UpdateCourse>
+          </PrivetRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://my-assignment-10-server-1.onrender.com/courses/${params.id}`
+          ),
       },
     ],
   },
