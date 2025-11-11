@@ -9,7 +9,6 @@ import ErrorPage from "./ErrorPage";
 
 const Home = () => {
   const { latestCourse, loading, error } = useCourses();
-  console.log(latestCourse);
   return (
     <div>
       <Banner></Banner>
@@ -20,11 +19,7 @@ const Home = () => {
         </h2>
 
         {/* Loading State */}
-        {loading && (
-          <div className="flex justify-center py-20">
-            <Loader />
-          </div>
-        )}
+        {loading && <Loader />}
 
         {/* Error State */}
         {error && <ErrorPage></ErrorPage>}

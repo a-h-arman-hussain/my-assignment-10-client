@@ -2,6 +2,7 @@ import React, { use, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext) || {};
@@ -50,21 +51,20 @@ const Navbar = () => {
           All Courses
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/my-added-course"
-          className={({ isActive }) =>
-            isActive
-              ? "text-primary font-semibold border-b-2 border-primary"
-              : "hover:text-primary transition"
-          }
-        >
-          My Added Course
-        </NavLink>
-      </li>
-
       {user && (
         <>
+          <li>
+            <NavLink
+              to="/my-added-course"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary font-semibold border-b-2 border-primary"
+                  : "hover:text-primary transition"
+              }
+            >
+              My Added Course
+            </NavLink>
+          </li>
           <li>
             <NavLink
               to="/my-enrolled-course"
@@ -95,7 +95,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 md:px-10">
+    <div className="navbar bg-base-100 sticky top-0 z-50 px-4 md:px-10">
       {/* LEFT */}
       <div className="navbar-start">
         <div className="dropdown lg:hidden">
@@ -125,9 +125,14 @@ const Navbar = () => {
 
         <Link
           to="/"
-          className="text-2xl font-extrabold text-primary tracking-wide"
+          className="flex justify-center items-center text-2xl font-extrabold text-primary tracking-wide"
         >
-          EduLearn
+          <img
+          className="w-20"
+            src="https://play-lh.googleusercontent.com/BxfTCOzSuUGh-NURUHuDpIGjRmOf5OanqwaHgs9MIuucFpTTr7or71ngt3Xd4P0NdMn1=w240-h480-rw"
+            alt=""
+          />
+          <span className="hidden sm:block">EduLearn</span>
         </Link>
       </div>
 
@@ -203,12 +208,25 @@ const Navbar = () => {
             )}
           </div>
         ) : (
-          <Link
-            to="/auth/login"
-            className="btn btn-primary rounded-full px-6 py-2 font-semibold hover:shadow-lg transition"
+          <motion.div
+            className="rounded-xl p-[2px] overflow-hidden w-20"
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{ duration: 4, ease: "linear", repeat: Infinity }}
+            style={{
+              background:
+                "linear-gradient(90deg, #6366F1, #EC4899, #F59E0B, #10B981)",
+              backgroundSize: "300% 300%",
+            }}
           >
-            Login
-          </Link>
+            <Link
+              to="/auth/login"
+              className="block text-center text-white py-2 rounded-lg font-semibold hover:text-gray-300 transition-colors duration-300"
+            >
+              Login
+            </Link>
+          </motion.div>
         )}
       </div>
     </div>

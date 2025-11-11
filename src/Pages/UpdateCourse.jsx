@@ -32,11 +32,14 @@ const UpdateCourse = () => {
       imageURL: e.target.imageURL.value,
     };
 
-    fetch(`http://localhost:4000/courses/${updateDetails._id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedCourse),
-    })
+    fetch(
+      `https://my-assignment-10-server-1.onrender.com/courses/${updateDetails._id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedCourse),
+      }
+    )
       .then((res) => res.json())
       .then(() => {
         Swal.fire({

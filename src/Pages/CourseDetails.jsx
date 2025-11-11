@@ -123,13 +123,15 @@ const CourseDetails = () => {
         {/* ✅ Conditional Buttons */}
         <div className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4">
           <p className="text-lg font-semibold">Price: ৳{courseDetails.price}</p>
-          <div className="flex gap-3">
-            <button
-              onClick={handleEnrolled}
-              className="bg-primary text-white px-8 py-3 rounded-xl hover:bg-indigo-600 transition-all"
-            >
-              Enroll Now
-            </button>
+          <div className="flex flex-col gap-3">
+            {user?.email !== courseDetails.created_by && (
+              <button
+                onClick={handleEnrolled}
+                className="bg-primary text-white px-8 py-3 rounded-xl hover:bg-indigo-600 transition-all"
+              >
+                Enroll Now
+              </button>
+            )}
             {/* Show Update button only if user is the course creator */}
             {user?.email === courseDetails.created_by && (
               <Link

@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
-import { AuthContext } from "../Provider/AuthProvider"; // ✅ Auth context import
+import { AuthContext } from "../Provider/AuthProvider";
+import { motion } from "framer-motion";
 
 const Banner = () => {
-  const { user } = useContext(AuthContext); // ✅ Get user
+  const { user } = use(AuthContext);
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200">
@@ -23,21 +24,83 @@ const Banner = () => {
             thousands of learners worldwide.
           </p>
 
-          {/* ✅ Only show buttons if user is not logged in */}
+          {/* Animated user name if logged in */}
+          {user && (
+            <motion.h1
+              className="text-4xl font-bold bg-gradient-to-r from-indigo-500 via-pink-500 to-yellow-500 bg-clip-text text-transparent"
+              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+              style={{ backgroundSize: "200% 200%" }}
+            >
+              {user.displayName}
+            </motion.h1>
+          )}
+
+          {/* Buttons if not logged in */}
           {!user && (
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-6">
-              <Link
-                to="/courses"
-                className="btn btn-primary text-lg px-8 hover:scale-105 transition-transform duration-300 shadow-lg"
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-6 w-full sm:w-auto">
+              {/* Explore Courses (normal gradient background) */}
+              <motion.div
+                className="rounded-xl p-[2px] overflow-hidden w-40 sm:w-44"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{ duration: 4, ease: "linear", repeat: Infinity }}
+                style={{
+                  background:
+                    "linear-gradient(90deg, #6366F1, #EC4899, #F59E0B, #10B981)",
+                  backgroundSize: "300% 300%",
+                }}
               >
-                Explore Courses
-              </Link>
-              <Link
-                to="/register"
-                className="btn btn-outline btn-primary text-lg px-8 hover:bg-primary hover:text-white transition-colors duration-300 shadow-lg"
+                <Link
+                  to="/courses"
+                  className="block text-center text-white py-2 rounded-lg font-semibold hover:text-black transition-colors duration-300 w-full"
+                >
+                  Explore Courses
+                </Link>
+              </motion.div>
+
+              {/* Join Now (gradient border + gradient text only) */}
+              <motion.div
+                className="relative inline-block p-[2px] rounded-xl overflow-hidden w-40 sm:w-44"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{ duration: 4, ease: "linear", repeat: Infinity }}
+                style={{
+                  background:
+                    "linear-gradient(90deg, #6366F1, #EC4899, #F59E0B, #10B981)",
+                  backgroundSize: "300% 300%",
+                }}
               >
-                Join Now
-              </Link>
+                <div className="rounded-xl bg-white w-full hover:bg-gray-200 h-full flex items-center justify-center">
+                  <motion.span
+                    className="block text-lg font-semibold text-center"
+                    animate={{
+                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                    }}
+                    transition={{
+                      duration: 4,
+                      ease: "linear",
+                      repeat: Infinity,
+                    }}
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #6366F1, #EC4899, #F59E0B, #10B981)",
+                      backgroundSize: "300% 300%",
+                      WebkitBackgroundClip: "text",
+                      color: "transparent",
+                    }}
+                  >
+                    <Link
+                      to="/auth/register"
+                      className="block w-full py-2 rounded-lg"
+                    >
+                      Join Now
+                    </Link>
+                  </motion.span>
+                </div>
+              </motion.div>
             </div>
           )}
         </div>
@@ -51,17 +114,6 @@ const Banner = () => {
           />
         </div>
       </div>
-
-      {/* Animations */}
-      <style>{`
-        @keyframes pulse-slow {
-        0%, 100% { opacity: 0.2; }
-        50% { opacity: 0.4; }
-    }
-        .animate-pulse-slow {
-        animation: pulse-slow 8s ease-in-out infinite;
-    }
-`}</style>
     </section>
   );
 };

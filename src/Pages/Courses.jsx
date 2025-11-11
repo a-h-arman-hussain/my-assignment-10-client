@@ -14,11 +14,7 @@ const Courses = () => {
       </h2>
 
       {/* Loading State */}
-      {loading && (
-        <div className="flex justify-center py-20">
-          <Loader />
-        </div>
-      )}
+      {loading && <Loader />}
 
       {/* Error State */}
       {error && (

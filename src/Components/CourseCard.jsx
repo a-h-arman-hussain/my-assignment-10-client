@@ -1,15 +1,26 @@
 import React from "react";
 import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const CourseCard = ({ course }) => {
   return (
-    <div className="max-w-sm bg-white rounded-3xl shadow-lg overflow-hidden transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      whileHover={{ scale: 1.03 }}
+      className="max-w-sm bg-white rounded-3xl shadow-lg overflow-hidden flex flex-col 
+                 transform transition-all duration-300 hover:shadow-2xl"
+    >
       {/* Course Image */}
       <div className="relative">
-        <img
+        <motion.img
           src={course.imageURL}
           alt={course.title}
           className="w-full h-48 object-cover"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.4 }}
         />
         {/* Category Badge */}
         <span className="absolute top-3 left-3 bg-primary/90 text-white text-xs font-semibold px-3 py-1 rounded-full">
@@ -34,15 +45,32 @@ const CourseCard = ({ course }) => {
           {course.course_start_date} - {course.course_end_date}
         </div>
 
-        {/* Enroll Button */}
-        <Link
-          to={`/course-details/${course._id}`}
-          className="mt-auto w-full bg-primary text-white text-center py-2 rounded-xl hover:bg-primary/90 transition-colors duration-300"
+        {/* Animated Gradient Button */}
+        <motion.div
+          className="mt-auto w-full rounded-xl p-[2px] overflow-hidden relative"
+          animate={{
+            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+          }}
+          transition={{
+            duration: 4,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+          style={{
+            background: "linear-gradient(90deg, #6366F1, #EC4899, #F59E0B, #10B981)",
+            backgroundSize: "300% 300%",
+          }}
         >
-          View Details
-        </Link>
+          <Link
+            to={`/course-details/${course._id}`}
+            className="block w-full text-center text-white py-2 rounded-lg 
+                       font-semibold hover:text-black transition-colors duration-300"
+          >
+            View Details
+          </Link>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
