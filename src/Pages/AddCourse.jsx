@@ -49,6 +49,7 @@ const AddCourse = () => {
 
   return (
     <div className="max-w-4xl mx-auto my-12 p-8 bg-white rounded-2xl shadow-lg">
+        <title>EduLearn | Add Course</title>
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Add a New Course
       </h1>

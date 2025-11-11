@@ -15,7 +15,8 @@ const Contact = () => {
   };
 
   return (
-    <section className="max-w-3xl mx-auto px-6 py-16">
+    <div className="max-w-3xl mx-auto px-6 py-16">
+        <title>EduLearn | Contact</title>
       {/* Heading */}
       <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 text-center mb-8">
         Contact <span className="text-primary">Us</span>
@@ -99,7 +100,7 @@ const Contact = () => {
         <p>Phone: +880 131 531 5449</p>
         <p>Address: Oxygen, Chittagong, Bangladesh</p>
       </div>
-    </section>
+    </div>
   );
 };
 

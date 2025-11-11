@@ -6,6 +6,7 @@ const ErrorPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 px-4">
+        <title>EduLearn | Error</title>
       {/* Animated 404 */}
       <h1 className="text-9xl font-extrabold text-purple-300 animate-bounce mb-6">
         404

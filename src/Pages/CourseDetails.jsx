@@ -70,7 +70,7 @@ const CourseDetails = () => {
           .then(() => {
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "✅ Your file has been deleted.",
               icon: "success",
             });
             navigate("/my-added-course");
@@ -84,6 +84,7 @@ const CourseDetails = () => {
 
   return (
     <div className="max-w-5xl mx-auto my-12 bg-white rounded-3xl shadow-xl overflow-hidden">
+        <title>EduLearn | Course Details</title>
       {/* Image */}
       <div className="relative">
         <img

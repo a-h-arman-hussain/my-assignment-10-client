@@ -1,55 +1,25 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Profile = () => {
-  const { user, logOut } = use(AuthContext);
+  const { user } = use(AuthContext);
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Logout
-  const handleLogout = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You will be logged out.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#6366f1",
-      cancelButtonColor: "#ef4444",
-      confirmButtonText: "Yes, Logout",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        logOut()
-          .then(() => {
-            Swal.fire({
-              icon: "success",
-              title: "Logged out successfully!",
-              timer: 1500,
-              showConfirmButton: false,
-            });
-            navigate("/auth/login");
-          })
-          .catch((err) => {
-            Swal.fire({
-              icon: "error",
-              title: "Logout Failed!",
-              text: err.message,
-            });
-          });
-      }
-    });
-  };
+  // ✅ Redirect to login if user is not logged in
+  useEffect(() => {
+    if (!user) {
+      navigate("/auth/login");
+    }
+  }, [user, navigate]);
 
   // Open Modal
-  const handleEditProfile = () => {
-    setIsModalOpen(true);
-  };
+  const handleEditProfile = () => setIsModalOpen(true);
 
   // Close Modal
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const closeModal = () => setIsModalOpen(false);
 
   // Handle form submit (temporary alert)
   const handleUpdateProfile = (e) => {
@@ -62,8 +32,12 @@ const Profile = () => {
     setIsModalOpen(false);
   };
 
+  if (!user) return null; // optional: prevent flash of content before redirect
+
   return (
-    <section className="max-w-3xl mx-auto my-12 p-8 bg-white rounded-2xl shadow-lg">
+    <div className="max-w-3xl mx-auto my-12 p-8 bg-white rounded-2xl shadow-lg">
+      <title>EduLearn | Profile</title>
+
       {/* Header */}
       <div className="flex flex-col items-center text-center">
         <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-100 mb-4 flex items-center justify-center">
@@ -86,18 +60,12 @@ const Profile = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="mt-8 flex justify-center gap-4">
+      <div className="mt-8 flex justify-center">
         <button
           onClick={handleEditProfile}
           className="btn btn-primary px-6 py-2 rounded-lg hover:bg-indigo-600 transition"
         >
           Edit Profile
-        </button>
-        <button
-          onClick={handleLogout}
-          className="btn btn-outline px-6 py-2 rounded-lg hover:bg-red-500 hover:text-white transition"
-        >
-          Logout
         </button>
       </div>
 
@@ -152,7 +120,7 @@ const Profile = () => {
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
 };
 

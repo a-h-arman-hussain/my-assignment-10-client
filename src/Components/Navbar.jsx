@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext) || {};
@@ -127,11 +128,7 @@ const Navbar = () => {
           to="/"
           className="flex justify-center items-center text-2xl font-extrabold text-primary tracking-wide"
         >
-          <img
-          className="w-20"
-            src="https://play-lh.googleusercontent.com/BxfTCOzSuUGh-NURUHuDpIGjRmOf5OanqwaHgs9MIuucFpTTr7or71ngt3Xd4P0NdMn1=w240-h480-rw"
-            alt=""
-          />
+          <img className="w-10" src={logo} alt="" />
           <span className="hidden sm:block">EduLearn</span>
         </Link>
       </div>

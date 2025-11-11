@@ -1,27 +1,22 @@
 import useCourses from "../Hooks/useCourses";
 import CourseCard from "../Components/CourseCard";
 import Loader from "../Components/Loader";
+import ErrorPage from "./ErrorPage";
 
 const Courses = () => {
   const { courses, loading, error } = useCourses();
-  console.log(courses);
+
+  if (loading) return <Loader></Loader>;
+
+  if (error) return <ErrorPage></ErrorPage>;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <title>EduLearn | All Course</title>
       {/* Heading */}
       <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-800 text-center mb-12">
         Our <span className="text-primary">Courses</span>
       </h2>
-
-      {/* Loading State */}
-      {loading && <Loader />}
-
-      {/* Error State */}
-      {error && (
-        <div className="text-center py-20 text-red-500">
-          <p>Oops! Something went wrong: {error}</p>
-        </div>
-      )}
 
       {/* Courses Grid */}
       {!loading && !error && courses.length > 0 && (
@@ -43,7 +38,7 @@ const Courses = () => {
           <p>No courses available at the moment.</p>
         </div>
       )}
-    </section>
+    </div>
   );
 };
 
