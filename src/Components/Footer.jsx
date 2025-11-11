@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const Footer = () => {
@@ -56,22 +52,20 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3 text-gray-700">Support</h3>
           <ul className="space-y-2">
             <li>
-              <Link to="/faq" className="hover:text-primary duration-300">
-                FAQ
-              </Link>
+              <Link className="hover:text-primary duration-300">FAQ</Link>
             </li>
             <li>
-              <Link to="/privacy" className="hover:text-primary duration-300">
+              <Link className="hover:text-primary duration-300">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link to="/terms" className="hover:text-primary duration-300">
+              <Link className="hover:text-primary duration-300">
                 Terms & Conditions
               </Link>
             </li>
             <li>
-              <Link to="/help" className="hover:text-primary duration-300">
+              <Link className="hover:text-primary duration-300">
                 Help Center
               </Link>
             </li>
@@ -85,7 +79,7 @@ const Footer = () => {
           </h3>
           <div className="flex gap-4">
             <a
-              href="#"
+              href="https://www.facebook.com/profile.php?id=61582048565794"
               className="p-2 bg-primary text-white rounded-full hover:scale-110 duration-300"
             >
               <FaFacebookF />
@@ -94,10 +88,10 @@ const Footer = () => {
               href="#"
               className="p-2 bg-primary text-white rounded-full hover:scale-110 duration-300"
             >
-              <FaTwitter />
+              <FaXTwitter />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/mohammed-abdul-hakim-arman-85b6b438a/"
               className="p-2 bg-primary text-white rounded-full hover:scale-110 duration-300"
             >
               <FaLinkedinIn />

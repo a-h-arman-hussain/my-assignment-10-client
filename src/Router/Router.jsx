@@ -5,7 +5,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Home from "../Pages/Home";
 import Courses from "../Pages/Courses";
-import Dashboard from "../Pages/Dashboard";
+// import Dashboard from "../Pages/Dashboard";
 import PrivetRoute from "../Provider/PrivateRoute";
 import MyEnrolledCourse from "../Pages/MyEnrolledCourse";
 import AddCourse from "../Pages/AddCourse";
@@ -13,6 +13,9 @@ import MyAddedCourse from "../Pages/MyAddedCourse";
 import CourseDetails from "../Pages/CourseDetails";
 import ErrorPage from "../Pages/ErrorPage";
 import UpdateCourse from "../Pages/UpdateCourse";
+import AboutUs from "../Pages/AboutUs";
+import Contact from "../Pages/Contact";
+import Profile from "../Pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -27,10 +30,10 @@ const router = createBrowserRouter([
         path: "/courses",
         Component: Courses,
       },
-      {
-        path: "/dashboard",
-        Component: Dashboard,
-      },
+    //   {
+    //     path: "/dashboard",
+    //     Component: Dashboard,
+    //   },
       {
         path: "/my-enrolled-course",
         element: (
@@ -78,6 +81,18 @@ const router = createBrowserRouter([
           fetch(
             `https://my-assignment-10-server-1.onrender.com/courses/${params.id}`
           ),
+      },
+      {
+        path: "/about",
+        Component: AboutUs,
+      },
+      {
+        path: "/contact",
+        Component: Contact,
+      },
+      {
+        path: "/profile",
+        Component: Profile,
       },
     ],
   },

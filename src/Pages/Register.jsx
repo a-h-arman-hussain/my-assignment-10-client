@@ -43,7 +43,7 @@ const Register = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-100 to-blue-200 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8">
         <h2 className="text-3xl font-bold text-center text-primary mb-2">
-          Create Account 📝
+          Create Account
         </h2>
         <p className="text-center text-gray-500 mb-8">
           Sign up to start your learning journey
@@ -102,7 +102,7 @@ const Register = () => {
               />
               <span
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-3 cursor-pointer text-gray-500 hover:text-primary"
+                className="absolute right-3 top-3 cursor-pointer text-gray-500 hover:text-primary z-10"
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>

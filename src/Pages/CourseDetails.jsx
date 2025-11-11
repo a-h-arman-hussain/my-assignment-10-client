@@ -4,26 +4,19 @@ import Loader from "../Components/Loader";
 import ErrorPage from "./ErrorPage";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import useCourses from "../Hooks/useCourses";
 
 const CourseDetails = () => {
   const data = useLoaderData();
   const courseDetails = data.result;
   const { user } = use(AuthContext);
   const navigate = useNavigate();
+  const { loading, error } = useCourses();
 
-  if (!courseDetails) return <ErrorPage message="Course not found" />;
+  if (loading) return <Loader></Loader>;
+  if (error) return <ErrorPage message="Course not found" />;
 
   const handleEnrolled = () => {
-    if (!user) {
-      Swal.fire({
-        title: "Login Required!",
-        text: "Please log in to enroll in this course.",
-        icon: "warning",
-        confirmButtonColor: "#6366f1",
-      });
-      return;
-    }
-
     const enrolledCourse = {
       ...courseDetails,
       enrolled_by: user?.email,
@@ -53,6 +46,40 @@ const CourseDetails = () => {
           confirmButtonColor: "#ef4444",
         });
       });
+  };
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          `https://my-assignment-10-server-1.onrender.com/courses/${courseDetails._id}`,
+          {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+          .then((res) => res.json())
+          .then(() => {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            navigate("/my-added-course");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
   };
 
   return (
@@ -93,21 +120,33 @@ const CourseDetails = () => {
           </div>
         </div>
 
+        {/* ✅ Conditional Buttons */}
         <div className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4">
           <p className="text-lg font-semibold">Price: ৳{courseDetails.price}</p>
-          <div>
-            <Link
-              to={`/update-course/${courseDetails._id}`}
-              className="bg-primary text-white px-8 py-3 rounded-xl hover:bg-indigo-600 transition-all"
-            >
-              Update Course
-            </Link>
+          <div className="flex gap-3">
             <button
               onClick={handleEnrolled}
               className="bg-primary text-white px-8 py-3 rounded-xl hover:bg-indigo-600 transition-all"
             >
               Enroll Now
             </button>
+            {/* Show Update button only if user is the course creator */}
+            {user?.email === courseDetails.created_by && (
+              <Link
+                to={`/update-course/${courseDetails._id}`}
+                className="bg-indigo-500 text-white px-8 py-3 rounded-xl hover:bg-indigo-600 transition-all"
+              >
+                Update Course
+              </Link>
+            )}
+            {user?.email === courseDetails.created_by && (
+              <button
+                onClick={handleDelete}
+                className="bg-red-500 text-white px-8 py-3 rounded-xl hover:bg-red-600 transition-all cursor-pointer"
+              >
+                Delete Course
+              </button>
+            )}
           </div>
         </div>
       </div>

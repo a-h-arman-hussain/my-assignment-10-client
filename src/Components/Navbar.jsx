@@ -1,14 +1,28 @@
-import React, { useContext } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext) || {};
+  const { user, logOut } = use(AuthContext) || {};
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleLogout = () => {
     logOut?.();
+    setOpen(false);
   };
+
+  // ✅ Close dropdown when clicked outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const navLinks = (
     <>
@@ -38,14 +52,14 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/dashboard"
+          to="/my-added-course"
           className={({ isActive }) =>
             isActive
               ? "text-primary font-semibold border-b-2 border-primary"
               : "hover:text-primary transition"
           }
         >
-          Dashboard
+          My Added Course
         </NavLink>
       </li>
 
@@ -60,7 +74,7 @@ const Navbar = () => {
                   : "hover:text-primary transition"
               }
             >
-              My Enrolled Course
+              My Enrolled
             </NavLink>
           </li>
           <li>
@@ -75,30 +89,17 @@ const Navbar = () => {
               Add Course
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/my-added-course"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-primary font-semibold border-b-2 border-primary"
-                  : "hover:text-primary transition"
-              }
-            >
-              My Added Course
-            </NavLink>
-          </li>
         </>
       )}
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-sm sticky top-0 z-50 px-4 md:px-8">
-      {/* LEFT: Logo & Mobile Menu */}
+    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 md:px-10">
+      {/* LEFT */}
       <div className="navbar-start">
-        {/* Mobile Dropdown */}
         <div className="dropdown lg:hidden">
-          <div tabIndex={0} role="button" className="btn btn-ghost p-1">
+          <label tabIndex={0} className="btn btn-ghost p-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 text-primary"
@@ -113,16 +114,15 @@ const Navbar = () => {
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
-          </div>
+          </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-3 shadow bg-base-100 rounded-box w-52 space-y-1"
+            className="menu menu-sm dropdown-content mt-3 p-3 shadow bg-base-100 rounded-box w-56 space-y-1"
           >
             {navLinks}
           </ul>
         </div>
 
-        {/* Logo */}
         <Link
           to="/"
           className="text-2xl font-extrabold text-primary tracking-wide"
@@ -131,22 +131,20 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* MIDDLE: Nav Links (Desktop Only) */}
+      {/* CENTER */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-6 font-medium">{navLinks}</ul>
       </div>
 
-      {/* RIGHT: User / Login */}
-      <div className="navbar-end">
+      {/* RIGHT */}
+      <div className="navbar-end relative">
         {user ? (
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar tooltip tooltip-left"
-              data-tip={user.displayName || "Profile"}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setOpen(!open)}
+              className="btn btn-ghost btn-circle avatar cursor-pointer"
             >
-              <div className="w-10 h-10 rounded-full border-2 border-primary overflow-hidden flex items-center justify-center bg-gray-100">
+              <div className="w-12 h-12 rounded-full border-2 border-primary overflow-hidden bg-gray-100 hover:scale-110 transition-transform duration-200">
                 {user.photoURL ? (
                   <img
                     src={user.photoURL}
@@ -154,27 +152,61 @@ const Navbar = () => {
                     className="object-cover w-full h-full"
                   />
                 ) : (
-                  <FaUserCircle className="text-3xl text-gray-500" />
+                  <FaUserCircle className="text-4xl text-gray-400" />
                 )}
               </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li className="px-2 py-1 text-sm text-gray-600">{user.email}</li>
-              <li>
+            </button>
+
+            {open && (
+              <ul className="absolute right-0 mt-3 p-4 shadow-lg bg-white rounded-xl w-64 border border-gray-200 flex flex-col gap-3 z-50">
+                <div className="flex items-center gap-3 border-b pb-3">
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+                    {user.photoURL ? (
+                      <img
+                        src={user.photoURL}
+                        alt="user"
+                        className="object-cover w-full h-full"
+                      />
+                    ) : (
+                      <FaUserCircle className="text-2xl text-gray-400" />
+                    )}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-700">
+                      {user.displayName}
+                    </p>
+                    <p className="text-sm text-gray-500 truncate">
+                      {user.email}
+                    </p>
+                  </div>
+                </div>
+
+                <NavLink
+                  to="/profile"
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    `px-3 py-2 rounded-lg text-gray-700 hover:bg-primary hover:text-white transition ${
+                      isActive ? "bg-primary text-white font-semibold" : ""
+                    }`
+                  }
+                >
+                  View Profile
+                </NavLink>
+
                 <button
                   onClick={handleLogout}
-                  className="text-error hover:bg-error hover:text-white rounded-md"
+                  className="w-full px-3 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition"
                 >
                   Logout
                 </button>
-              </li>
-            </ul>
+              </ul>
+            )}
           </div>
         ) : (
-          <Link to="/auth/login" className="btn btn-primary rounded-full px-5">
+          <Link
+            to="/auth/login"
+            className="btn btn-primary rounded-full px-6 py-2 font-semibold hover:shadow-lg transition"
+          >
             Login
           </Link>
         )}
