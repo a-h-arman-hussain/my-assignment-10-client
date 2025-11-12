@@ -16,6 +16,7 @@ import UpdateCourse from "../Pages/UpdateCourse";
 import AboutUs from "../Pages/AboutUs";
 import Contact from "../Pages/Contact";
 import Profile from "../Pages/Profile";
+import ForgetPassword from "../Pages/ForgatPassword";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/auth/login", Component: Login },
       { path: "/auth/register", Component: Register },
+      { path: "/auth/forget-password", Component: ForgetPassword },
     ],
   },
   {

@@ -6,14 +6,14 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { login, loginWithGoogle, forgotPassword } = use(AuthContext); // ✅ useContext
+  const { login, loginWithGoogle } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
+    
   const from = location.state?.from?.pathname || "/";
 
-  // 🔹 Email/Password login
+  //  Email/Password login
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -24,7 +24,7 @@ const Login = () => {
         Swal.fire({
           icon: "success",
           title: "Welcome back!",
-          text: `${result.user.displayName || "User"} logged in successfully.`,
+          text: `${result.user.displayName} logged in successfully.`,
           timer: 2000,
           showConfirmButton: false,
         });
@@ -39,7 +39,7 @@ const Login = () => {
       });
   };
 
-  // 🔹 Google login
+  //  Google login
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((result) => {
@@ -61,33 +61,9 @@ const Login = () => {
       });
   };
 
-  // 🔹 Forgot Password
-  const handleForgotPassword = () => {
-    const email = prompt("Please enter your email for password reset:");
-    if (!email) return;
-
-    forgotPassword(email)
-      .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Email Sent!",
-          text: "Check your inbox to reset your password.",
-          timer: 2500,
-          showConfirmButton: false,
-        });
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: err.message,
-        });
-      });
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-100 to-blue-200 flex items-center justify-center px-4">
-        <title>EduLearn | Login</title>
+      <title>EduLearn | Login</title>
       <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8">
         <h2 className="text-3xl font-bold text-center text-primary mb-2">
           Welcome Back
@@ -130,15 +106,14 @@ const Login = () => {
               </span>
             </div>
 
-            {/* 🔹 Forgot Password Link */}
             <div className="text-right mt-1">
-              <button
+              <Link
+                to="/auth/forget-password"
                 type="button"
                 className="text-sm text-primary hover:underline"
-                onClick={handleForgotPassword}
               >
                 Forgot Password?
-              </button>
+              </Link>
             </div>
           </div>
 

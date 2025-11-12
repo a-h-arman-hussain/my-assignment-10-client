@@ -50,7 +50,7 @@ const AddCourse = () => {
   return (
     <div className="max-w-4xl mx-auto my-12 p-8 bg-white rounded-2xl shadow-lg">
       <title>EduLearn | Add Course</title>
-      <h2 className="text-4xl font-extrabold text-gray-800 text-center mb-6">
+      <h2 className="text-2xl md:text-4xl font-extrabold text-gray-800 text-center mb-6">
         Add a New <span className="text-primary">Course</span>
       </h2>
       <form onSubmit={handleSubmit} className="space-y-5">

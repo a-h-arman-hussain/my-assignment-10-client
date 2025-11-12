@@ -8,6 +8,9 @@ const Register = () => {
   const { createUser, setUser } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+//   const [error, setError] = useState("");
+
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -16,6 +19,16 @@ const Register = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
+
+    if (!passwordRegex.test(password)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Invalid Password Format!",
+        text: "Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long.",
+        confirmButtonColor: "#6366f1",
+      });
+      return;
+    }
     createUser(email, password)
       .then((res) => {
         const user = res.user;
@@ -30,11 +43,11 @@ const Register = () => {
         const from = location.state?.from?.pathname || "/";
         navigate(from, { replace: true });
       })
-      .catch((err) => {
+      .catch((error) => {
         Swal.fire({
           icon: "error",
           title: "Registration Failed",
-          text: err.message,
+          text: error.message,
         });
       });
   };

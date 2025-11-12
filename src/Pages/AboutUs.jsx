@@ -5,7 +5,7 @@ const AboutUs = () => {
     <div className="max-w-6xl mx-auto px-6 py-16">
       <title>EduLearn | AboutUs</title>
       {/* Heading */}
-      <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 text-center mb-8">
+      <h1 className="text-2xl md:text-4xl sm:text-5xl font-extrabold text-gray-800 text-center mb-8">
         About <span className="text-primary">Us</span>
       </h1>
 

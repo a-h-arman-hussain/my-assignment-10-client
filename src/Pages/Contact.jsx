@@ -18,7 +18,7 @@ const Contact = () => {
     <div className="max-w-3xl mx-auto px-6 py-16">
         <title>EduLearn | Contact</title>
       {/* Heading */}
-      <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 text-center mb-8">
+      <h1 className="text-2xl md:text-4xl sm:text-5xl font-extrabold text-gray-800 text-center mb-4 md:mb-8">
         Contact <span className="text-primary">Us</span>
       </h1>
 

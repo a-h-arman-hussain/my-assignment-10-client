@@ -13,7 +13,7 @@ const Banner = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 py-24 lg:py-32 flex flex-col-reverse lg:flex-row items-center gap-10">
         {/* Left Content */}
         <div className="text-center lg:text-left space-y-6 max-w-lg">
-          <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-800 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-extrabold text-gray-800 leading-tight">
             Learn <span className="text-primary">Smarter</span>,<br />
             Achieve <span className="text-secondary">Faster</span>
           </h1>

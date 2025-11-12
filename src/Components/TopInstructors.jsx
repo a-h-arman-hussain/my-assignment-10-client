@@ -1,35 +1,23 @@
 import React from "react";
+import arman from "../assets/arman.jpg";
+import saim from "../assets/saim.jpg";
+import raihan from "../assets/raihan.jpg";
+import sifat from "../assets/sifat.jpg";
 
 const instructors = [
-  {
-    name: "John Doe",
-    role: "Full Stack Developer",
-    photo: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    name: "Jane Smith",
-    role: "UI/UX Designer",
-    photo: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    name: "Michael Brown",
-    role: "Data Scientist",
-    photo: "https://randomuser.me/api/portraits/men/56.jpg",
-  },
-  {
-    name: "Emily Johnson",
-    role: "AI Specialist",
-    photo: "https://randomuser.me/api/portraits/women/65.jpg",
-  },
+  { name: "A H Arman Hussain", role: "Full Stack Developer", photo: arman },
+  { name: "Abdul Karim Saim", role: "UI/UX Designer", photo: saim },
+  { name: "Mesbah Uddin Raihan", role: "Data Scientist", photo: raihan },
+  { name: "Abdur Rahman Sifat", role: "AI Specialist", photo: sifat },
 ];
 
 const TopInstructors = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 relative">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-gray-800">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-gray-800">
             Meet Our <span className="text-primary">Top Instructors</span>
           </h2>
           <p className="mt-4 text-gray-600 max-w-xl mx-auto">
@@ -38,28 +26,54 @@ const TopInstructors = () => {
           </p>
         </div>
 
-        {/* Instructor Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {instructors.map((instructor, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6 text-center"
-            >
-              <div className="w-24 h-24 mx-auto mb-4">
-                <img
-                  src={instructor.photo}
-                  alt={instructor.name}
-                  className="w-full h-full object-cover rounded-full shadow-lg"
-                />
+        {/* Marquee Container */}
+        <div className="overflow-hidden relative">
+          {/* Gradient overlay for modern effect */}
+          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
+
+          <div className="flex animate-marquee gap-8 pb-2 hover:pause">
+            {instructors.concat(instructors).map((instructor, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-transform duration-300 transform hover:scale-105 p-6 text-center flex-shrink-0 w-64"
+              >
+                <div className="w-24 h-24 mx-auto mb-4">
+                  <img
+                    src={instructor.photo}
+                    alt={instructor.name}
+                    className="w-full h-full object-cover rounded-full shadow-md"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {instructor.name}
+                </h3>
+                <p className="text-gray-500">{instructor.role}</p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800">
-                {instructor.name}
-              </h3>
-              <p className="text-gray-500">{instructor.role}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Tailwind marquee animation */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-marquee {
+          display: flex;
+          width: max-content;
+          animation: marquee 25s linear infinite;
+        }
+        .hover\\:pause:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   );
 };

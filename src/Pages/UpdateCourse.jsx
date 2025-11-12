@@ -64,7 +64,7 @@ const UpdateCourse = () => {
   return (
     <div className="max-w-4xl mx-auto my-12 p-8 bg-white rounded-2xl shadow-lg">
       <title>EduLearn | Update Course</title>
-      <h2 className="text-4xl font-extrabold text-gray-800 text-center mb-8">
+      <h2 className="text-2xl md:text-4xl font-extrabold text-gray-800 text-center mb-8">
         Update <span className="text-primary">Course</span>
       </h2>
       <form onSubmit={handleSubmit} className="space-y-5">
