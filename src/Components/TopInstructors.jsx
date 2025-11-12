@@ -32,7 +32,7 @@ const TopInstructors = () => {
           <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none"></div>
           <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
 
-          <div className="flex animate-marquee gap-8 pb-2 hover:pause">
+          <div className="flex animate-marquee gap-8 pb-5 hover:pause">
             {instructors.concat(instructors).map((instructor, idx) => (
               <div
                 key={idx}

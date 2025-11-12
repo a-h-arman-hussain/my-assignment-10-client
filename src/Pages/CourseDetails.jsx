@@ -123,15 +123,7 @@ const CourseDetails = () => {
           </div>
           <div>
             <h3 className="font-semibold">Duration</h3>
-            <p>{courseDetails.duration} days</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">Start Date</h3>
-            <p>{courseDetails.course_start_date}</p>
-          </div>
-          <div>
-            <h3 className="font-semibold">End Date</h3>
-            <p>{courseDetails.course_end_date}</p>
+            <p>{courseDetails.duration} Weeks</p>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4">
@@ -148,7 +140,7 @@ const CourseDetails = () => {
             {user?.email === courseDetails.created_by && (
               <Link
                 to={`/update-course/${courseDetails._id}`}
-                className="bg-indigo-500 text-white px-8 py-3 rounded-xl hover:bg-indigo-600 transition-all"
+                className="btn btn-primary px-8 py-3 rounded-lg hover:bg-indigo-600 transition-all"
               >
                 Update Course
               </Link>
@@ -156,7 +148,7 @@ const CourseDetails = () => {
             {user?.email === courseDetails.created_by && (
               <button
                 onClick={handleDelete}
-                className="bg-red-500 text-white px-8 py-3 rounded-xl hover:bg-red-600 transition-all cursor-pointer"
+                className="btn bg-red-500 text-white px-8 py-3 rounded-lg hover:bg-red-600 transition-all cursor-pointer"
               >
                 Delete Course
               </button>

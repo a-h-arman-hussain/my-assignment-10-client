@@ -15,8 +15,6 @@ const AddCourse = () => {
       duration: e.target.duration.value,
       category: e.target.category.value,
       description: e.target.description.value,
-      course_start_date: e.target.course_start_date.value,
-      course_end_date: e.target.course_end_date.value,
       created_by: user?.email,
       created_ad: new Date(),
     };
@@ -119,27 +117,6 @@ const AddCourse = () => {
             <option value="UI/UX Design" />
           </datalist>
         </div>
-        {/* Dates */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block font-semibold mb-1">Start Date</label>
-            <input
-              type="date"
-              name="course_start_date"
-              required
-              className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            />
-          </div>
-          <div>
-            <label className="block font-semibold mb-1">End Date</label>
-            <input
-              type="date"
-              name="course_end_date"
-              required
-              className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            />
-          </div>
-        </div>
         {/* Description */}
         <div>
           <label className="block font-semibold mb-1">Description</label>
@@ -154,7 +131,7 @@ const AddCourse = () => {
 
         <button
           type="submit"
-          className="w-full bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-600 transition-colors"
+          className="btn w-full btn-primary px-6 py-3 rounded-lg font-semibold hover:bg-indigo-600 transition-colors"
         >
           Add Course
         </button>

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
-import Loader from "../Components/Loader";
 
 const Profile = () => {
   const { user } = use(AuthContext);

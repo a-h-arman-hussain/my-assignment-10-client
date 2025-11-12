@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -6,28 +6,16 @@ import { AuthContext } from "../Provider/AuthProvider";
 const UpdateCourse = () => {
   const data = useLoaderData();
   const updateDetails = data.result;
-  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!user) {
-      Swal.fire({
-        title: "Login Required!",
-        text: "Please log in to update this course.",
-        icon: "warning",
-        confirmButtonColor: "#6366f1",
-      });
-      return;
-    }
 
     const updatedCourse = {
       title: e.target.title.value,
       description: e.target.description.value,
       price: e.target.price.value,
       duration: e.target.duration.value,
-      course_start_date: e.target.course_start_date.value,
-      course_end_date: e.target.course_end_date.value,
       category: e.target.category.value,
       imageURL: e.target.imageURL.value,
     };
@@ -112,30 +100,6 @@ const UpdateCourse = () => {
             />
           </div>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block font-semibold mb-1">Start Date</label>
-            <input
-              type="date"
-              name="course_start_date"
-              defaultValue={updateDetails.course_start_date}
-              className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              required
-            />
-          </div>
-          <div>
-            <label className="block font-semibold mb-1">End Date</label>
-            <input
-              type="date"
-              name="course_end_date"
-              defaultValue={updateDetails.course_end_date}
-              className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              required
-            />
-          </div>
-        </div>
-
         <div>
           <label className="block font-semibold mb-1">Category</label>
           <input

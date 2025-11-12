@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { motion } from "framer-motion";
+import { FiLogIn } from "react-icons/fi";
 
 const Banner = () => {
   const { user } = use(AuthContext);
@@ -23,7 +24,7 @@ const Banner = () => {
           </p>
           {user && (
             <motion.h1
-              className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-indigo-500 via-pink-500 to-yellow-500 bg-clip-text text-transparent"
+              className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 bg-clip-text text-transparent"
               animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
               transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
               style={{ backgroundSize: "200% 200%" }}
@@ -34,37 +35,42 @@ const Banner = () => {
           {!user && (
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-6 w-full sm:w-auto">
               <motion.div
-                className="rounded-xl p-[2px] overflow-hidden w-40 sm:w-44"
+                className="rounded-xl p-[2px] overflow-hidden w-44 h-12 sm:w-48 sm:h-12"
                 animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  backgroundPositionX: ["0%", "100%", "0%"],
                 }}
-                transition={{ duration: 4, ease: "linear", repeat: Infinity }}
+                transition={{
+                  duration: 4,
+                  ease: "linear",
+                  repeat: Infinity,
+                }}
                 style={{
-                  background:
-                    "linear-gradient(90deg, #6366F1, #EC4899, #F59E0B, #10B981)",
-                  backgroundSize: "300% 300%",
+                  backgroundImage:
+                    "linear-gradient(90deg, #3B82F6, #06B6D4, #3B82F6)",
+                  backgroundSize: "300% 100%",
                 }}
               >
                 <Link
                   to="/courses"
-                  className="block text-center text-white py-2 rounded-lg font-semibold hover:text-black transition-colors duration-300 w-full"
+                  className="block text-center text-white py-2 rounded-lg font-semibold hover:text-gray-300 transition-colors duration-300"
                 >
                   Explore Courses
                 </Link>
               </motion.div>
+
               <motion.div
-                className="relative inline-block p-[2px] rounded-xl overflow-hidden w-40 sm:w-44"
+                className="relative inline-block p-[2px] rounded-xl overflow-hidden w-44 h-12 sm:w-48 sm:h-12"
                 animate={{
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                 }}
                 transition={{ duration: 4, ease: "linear", repeat: Infinity }}
                 style={{
                   background:
-                    "linear-gradient(90deg, #6366F1, #EC4899, #F59E0B, #10B981)",
+                    "linear-gradient(90deg, #3B82F6, #06B6D4, #3B82F6)",
                   backgroundSize: "300% 300%",
                 }}
               >
-                <div className="rounded-xl bg-white w-full hover:bg-gray-200 h-full flex items-center justify-center">
+                <div className="rounded-xl bg-white w-full h-full hover:bg-gray-200 flex items-center justify-center">
                   <motion.span
                     className="block text-lg font-semibold text-center"
                     animate={{
@@ -77,7 +83,7 @@ const Banner = () => {
                     }}
                     style={{
                       background:
-                        "linear-gradient(90deg, #6366F1, #EC4899, #F59E0B, #10B981)",
+                        "linear-gradient(90deg, #3B82F6, #06B6D4, #3B82F6)",
                       backgroundSize: "300% 300%",
                       WebkitBackgroundClip: "text",
                       color: "transparent",
@@ -87,7 +93,10 @@ const Banner = () => {
                       to="/auth/register"
                       className="block w-full py-2 rounded-lg"
                     >
-                      Join Now
+                      <span className="flex justify-center items-center gap-1">
+                        <FiLogIn className="text-cyan-500" />
+                        Join Now
+                      </span>
                     </Link>
                   </motion.span>
                 </div>

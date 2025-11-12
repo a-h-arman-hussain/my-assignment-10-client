@@ -28,23 +28,20 @@ const CourseCard = ({ course }) => {
         </span>
       </div>
 
-      {/* Title */}
       <div className="p-6 flex flex-col gap-3 flex-1">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 truncate">
-          {course.title}
-        </h2>
-
+        <div>
+          {/* Title */}
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 truncate">
+            {course.title}
+          </h2>
+          {/* Email */}
+          <p className="text-xs text-gray-400">Created By: {course.created_by}</p>
+        </div>
         {/* Duration & Price */}
         <div className="flex justify-between items-center text-gray-600 mt-2">
-          <span className="text-sm">Week {course.duration}</span>
+          <span className="text-sm">Duration {course.duration}Weeks</span>
           <span className="text-sm font-semibold">৳{course.price}</span>
         </div>
-
-        {/* Dates */}
-        <div className="text-xs text-gray-400 mt-1">
-          Start {course.course_start_date}
-        </div>
-
         <Link
           to={`/course-details/${course._id}`}
           className="btn btn-primary w-full text-center py-2

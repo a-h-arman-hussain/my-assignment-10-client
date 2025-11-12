@@ -10,7 +10,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-    
+
   const from = location.state?.from?.pathname || "/";
 
   //  Email/Password login
@@ -62,9 +62,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-100 to-blue-200 flex items-center justify-center px-4">
+    <div className="flex items-center justify-center">
       <title>EduLearn | Login</title>
-      <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8">
+      <div className="w-full bg-white shadow-2xl rounded-2xl p-8">
         <h2 className="text-3xl font-bold text-center text-primary mb-2">
           Welcome Back
         </h2>

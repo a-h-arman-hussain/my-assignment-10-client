@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
 import logo from "../assets/logo.png";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext) || {};
@@ -197,29 +198,39 @@ const Navbar = () => {
                   onClick={handleLogout}
                   className="w-full px-3 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition cursor-pointer"
                 >
-                  Logout
+                  <span className="flex justify-center items-center gap-1">
+                    <FiLogOut />
+                    Logout
+                  </span>
                 </button>
               </ul>
             )}
           </div>
         ) : (
           <motion.div
-            className="rounded-xl p-[2px] overflow-hidden w-20"
+            className="rounded-xl p-[2px] overflow-hidden w-30"
             animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              backgroundPositionX: ["0%", "100%", "0%"],
             }}
-            transition={{ duration: 4, ease: "linear", repeat: Infinity }}
+            transition={{
+              duration: 4,
+              ease: "linear",
+              repeat: Infinity,
+            }}
             style={{
-              background:
-                "linear-gradient(90deg, #6366F1, #EC4899, #F59E0B, #10B981)",
-              backgroundSize: "300% 300%",
+              backgroundImage:
+                "linear-gradient(90deg, #3B82F6, #06B6D4, #3B82F6)",
+              backgroundSize: "300% 100%",
             }}
           >
             <Link
               to="/auth/login"
               className="block text-center text-white py-2 rounded-lg font-semibold hover:text-gray-300 transition-colors duration-300"
             >
-              Login
+              <span className="flex justify-center items-center gap-1">
+                <FiLogIn />
+                Login
+              </span>
             </Link>
           </motion.div>
         )}
