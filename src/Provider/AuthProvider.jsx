@@ -10,7 +10,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import app from "../Firebase/firebase.config";
-// import toast from "react-hot-toast";
+
 
 export const AuthContext = createContext();
 

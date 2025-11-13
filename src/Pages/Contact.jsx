@@ -16,14 +16,14 @@ const Contact = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
-        <title>EduLearn | Contact</title>
+      <title>EduLearn | Contact</title>
       {/* Heading */}
-      <h1 className="text-2xl md:text-4xl sm:text-5xl font-extrabold text-gray-800 text-center mb-4 md:mb-8">
+      <h1 className="text-2xl md:text-4xl sm:text-5xl font-extrabold text-center mb-4 md:mb-6">
         Contact <span className="text-primary">Us</span>
       </h1>
 
       {/* Intro */}
-      <p className="text-center text-gray-600 mb-12 text-lg">
+      <p className="text-center mb-12 text-lg">
         Have questions or feedback? Reach out to us and we’ll get back to you as
         soon as possible.
       </p>
@@ -34,29 +34,29 @@ const Contact = () => {
       >
         {/* Name */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Name</label>
+          <label className="block text-primary font-medium mb-2">Name</label>
           <input
             type="text"
             name="name"
             required
             placeholder="Your Full Name"
-            className="input input-bordered w-full border px-4 py-2 rounded-lg"
+            className="w-full border text-black border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
         </div>
         {/* Email */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Email</label>
+          <label className="block text-primary font-medium mb-2">Email</label>
           <input
             type="email"
             name="email"
             required
             placeholder="you@example.com"
-            className="input input-bordered w-full border px-4 py-2 rounded-lg"
+            className="w-full border text-black border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
         </div>
         {/* Subject */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block text-primary font-medium mb-2">
             Subject
           </label>
           <input
@@ -64,12 +64,12 @@ const Contact = () => {
             name="subject"
             required
             placeholder="Subject"
-            className="input input-bordered w-full border px-4 py-2 rounded-lg"
+            className="w-full border text-black border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
         </div>
         {/* Message */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block text-primary font-medium mb-2">
             Message
           </label>
           <textarea
@@ -77,7 +77,7 @@ const Contact = () => {
             required
             rows="5"
             placeholder="Write your message..."
-            className="textarea textarea-bordered w-full border px-4 py-2 rounded-lg"
+            className="w-full border text-black border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           ></textarea>
         </div>
         {/* Submit Button */}
@@ -88,7 +88,7 @@ const Contact = () => {
           Send Message
         </button>
       </form>
-      <div className="mt-12 text-center text-gray-600">
+      <div className="mt-12 text-center">
         <p>Email: aharmanhussain@gmail.com</p>
         <p>Phone: +880 131 531 5449</p>
         <p>Address: Oxygen, Chittagong, Bangladesh</p>

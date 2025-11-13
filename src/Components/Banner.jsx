@@ -8,7 +8,7 @@ const Banner = () => {
   const { user } = use(AuthContext);
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200">
+    <div className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200 rounded-2xl">
       <div className="absolute -top-32 -left-32 w-72 h-72 bg-purple-300 rounded-full opacity-20 blur-3xl animate-pulse-slow"></div>
       <div className="absolute -bottom-32 -right-32 w-72 h-72 bg-blue-300 rounded-full opacity-20 blur-3xl animate-pulse-slow"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 py-24 lg:py-32 flex flex-col-reverse lg:flex-row items-center gap-10">

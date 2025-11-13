@@ -68,27 +68,31 @@ const Login = () => {
         <h2 className="text-3xl font-bold text-center text-primary mb-2">
           Welcome Back
         </h2>
-        <p className="text-center text-gray-500 mb-8">
+        <p className="text-center text-black mb-4">
           Please log in to continue learning
         </p>
 
         <form onSubmit={handleLogin} className="space-y-5">
           <div>
             <label className="label">
-              <span className="label-text font-medium">Email Address</span>
+              <span className="label-text text-primary font-medium">
+                Email Address
+              </span>
             </label>
             <input
               type="email"
               name="email"
               required
               placeholder="you@example.com"
-              className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full bg-none border text-black border-indigo-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
           <div>
             <label className="label">
-              <span className="label-text font-medium">Password</span>
+              <span className="label-text text-primary font-medium">
+                Password
+              </span>
             </label>
             <div className="relative">
               <input
@@ -96,7 +100,7 @@ const Login = () => {
                 name="password"
                 required
                 placeholder="••••••••"
-                className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-primary pr-10"
+                className="w-full bg-none border text-black border-indigo-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               <span
                 onClick={() => setShowPassword(!showPassword)}
@@ -126,7 +130,7 @@ const Login = () => {
 
         <button
           onClick={handleGoogleLogin}
-          className="btn btn-outline w-full flex items-center justify-center gap-2 hover:bg-blue-50"
+          className="btn btn-outline text-primary w-full flex items-center justify-center gap-2 hover:bg-blue-50 hover:border-primary"
         >
           <FcGoogle size={22} />
           Continue with Google

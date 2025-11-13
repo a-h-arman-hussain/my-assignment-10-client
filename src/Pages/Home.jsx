@@ -13,19 +13,19 @@ const Home = () => {
     <div>
         <title>EduLearn | Home</title>
       <Banner></Banner>
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Heading */}
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-800 text-center mb-12">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-12">
           Popular <span className="text-primary">Courses</span>
         </h2>
 
-        {/* Loading State */}
+        {/* Loading */}
         {loading && <Loader />}
 
-        {/* Error State */}
+        {/* Error */}
         {error && <ErrorPage></ErrorPage>}
 
-        {/* Courses Grid */}
+        {/* Courses */}
         {!loading && !error && latestCourse.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {latestCourse.map((course) => (
@@ -45,7 +45,7 @@ const Home = () => {
             <p>No courses available at the moment.</p>
           </div>
         )}
-      </section>
+      </div>
       <WhyChooseUs></WhyChooseUs>
       <TopInstructors></TopInstructors>
     </div>

@@ -31,14 +31,14 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-4xl font-extrabold text-gray-800">
+          <h2 className="text-2xl md:text-4xl font-extrabold">
             Why Choose <span className="text-primary">EduLearn</span>?
           </h2>
-          <p className="mt-4 text-gray-600 max-w-xl mx-auto">
+          <p className="mt-4 max-w-xl mx-auto">
             Discover the benefits of learning with us. We combine quality,
             expertise, and community to make your learning journey effective and
             enjoyable.

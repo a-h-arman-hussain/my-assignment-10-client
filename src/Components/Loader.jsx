@@ -2,7 +2,7 @@ import React from "react";
 
 const Loader = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200">
+    <div className="flex flex-col items-center justify-center h-screen">
       {/* Spinning Gradient Circle */}
       <div className="relative">
         <div className="w-20 h-20 rounded-full border-t-4 border-b-4 border-transparent animate-spin border-t-primary border-b-secondary"></div>

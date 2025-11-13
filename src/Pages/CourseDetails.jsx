@@ -113,21 +113,21 @@ const CourseDetails = () => {
 
       {/* Course Info */}
       <div className="p-8 space-y-4">
-        <h1 className="text-3xl font-bold">{courseDetails.title}</h1>
+        <h1 className="text-3xl text-primary font-bold">{courseDetails.title}</h1>
         <p className="text-gray-600">{courseDetails.description}</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
           <div>
-            <h3 className="font-semibold">Email</h3>
-            <p>{courseDetails.created_by}</p>
+            <h3 className="font-semibold text-primary">Email</h3>
+            <p className="text-black">{courseDetails.created_by}</p>
           </div>
           <div>
-            <h3 className="font-semibold">Duration</h3>
-            <p>{courseDetails.duration} Weeks</p>
+            <h3 className="font-semibold text-primary">Duration</h3>
+            <p className="text-black">{courseDetails.duration} Weeks</p>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4">
-          <p className="text-lg font-semibold">Price: ৳{courseDetails.price}</p>
+          <p className="text-lg text-primary font-semibold">Price: ৳{courseDetails.price}</p>
           <div className="flex flex-col gap-3">
             {user?.email !== courseDetails.created_by && (
               <button
@@ -148,7 +148,7 @@ const CourseDetails = () => {
             {user?.email === courseDetails.created_by && (
               <button
                 onClick={handleDelete}
-                className="btn bg-red-500 text-white px-8 py-3 rounded-lg hover:bg-red-600 transition-all cursor-pointer"
+                className="btn bg-red-500 border-none text-white px-8 py-3 rounded-lg hover:bg-red-600 transition-all cursor-pointer"
               >
                 Delete Course
               </button>
@@ -159,7 +159,7 @@ const CourseDetails = () => {
       <div className="p-4">
         <button
           onClick={() => navigate(-1)}
-          className="btn border-primary text-primary"
+          className="btn border-primary border-2 text-primary bg-white" 
         >
           ← Back
         </button>

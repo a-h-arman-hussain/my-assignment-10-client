@@ -16,7 +16,7 @@ const MyAddedCourse = () => {
   return (
     <div className="max-w-6xl mx-auto my-10 px-4">
       <title>EduLearn | My Added Course</title>
-      <h2 className="text-2xl md:text-4xl font-extrabold text-gray-800 text-center mb-8">
+      <h2 className="text-2xl md:text-4xl font-extrabold text-center mb-8">
         My Added <span className="text-primary">Course</span>
       </h2>
       {myCourse.length === 0 ? (

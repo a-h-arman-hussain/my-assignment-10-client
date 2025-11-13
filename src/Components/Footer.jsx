@@ -22,7 +22,7 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-lg font-semibold mb-3 text-gray-700">
+          <h3 className="text-lg font-semibold mb-3">
             Quick Links
           </h3>
           <ul className="space-y-2">
@@ -51,7 +51,7 @@ const Footer = () => {
 
         {/* Support */}
         <div>
-          <h3 className="text-lg font-semibold mb-3 text-gray-700">Support</h3>
+          <h3 className="text-lg font-semibold mb-3">Support</h3>
           <ul className="space-y-2">
             <li>
               <Link className="hover:text-primary duration-300">FAQ</Link>
@@ -76,7 +76,7 @@ const Footer = () => {
 
         {/* Socials */}
         <div>
-          <h3 className="text-lg font-semibold mb-3 text-gray-700">
+          <h3 className="text-lg font-semibold mb-3">
             Follow Us
           </h3>
           <div className="flex gap-4">

@@ -13,14 +13,14 @@ const instructors = [
 
 const TopInstructors = () => {
   return (
-    <section className="py-20 bg-gray-50 relative">
+    <section className="py-20 relative">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-4xl font-extrabold text-gray-800">
+          <h2 className="text-2xl md:text-4xl font-extrabold">
             Meet Our <span className="text-primary">Top Instructors</span>
           </h2>
-          <p className="mt-4 text-gray-600 max-w-xl mx-auto">
+          <p className="mt-4 max-w-xl mx-auto">
             Learn from the best in the industry. Our instructors are experts in
             their fields with years of experience.
           </p>
@@ -29,10 +29,10 @@ const TopInstructors = () => {
         {/* Marquee Container */}
         <div className="overflow-hidden relative">
           {/* Gradient overlay for modern effect */}
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
+          <div className="absolute inset-y-0 left-0 w-24 to-transparent pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-24 to-transparent pointer-events-none"></div>
 
-          <div className="flex animate-marquee gap-8 pb-5 hover:pause">
+          <div className="flex animate-marquee gap-8 py-5 hover:pause">
             {instructors.concat(instructors).map((instructor, idx) => (
               <div
                 key={idx}

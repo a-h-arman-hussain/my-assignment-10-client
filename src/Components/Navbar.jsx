@@ -1,7 +1,7 @@
 import React, { use, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
-import { FaUserCircle } from "react-icons/fa";
+import { FaMoon, FaSun, FaUserCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
 import logo from "../assets/logo.png";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
@@ -9,7 +9,18 @@ import { FiLogIn, FiLogOut } from "react-icons/fi";
 const Navbar = () => {
   const { user, logOut } = use(AuthContext) || {};
   const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   const handleLogout = () => {
     logOut?.();
@@ -138,102 +149,127 @@ const Navbar = () => {
       </div>
 
       {/* RIGHT */}
-      <div className="navbar-end relative">
-        {user ? (
-          <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setOpen(!open)}
-              className="btn btn-ghost btn-circle avatar cursor-pointer"
-            >
-              <div className="w-12 h-12 rounded-full border-2 border-primary overflow-hidden bg-gray-100 hover:scale-110 transition-transform duration-200">
-                {user.photoURL ? (
-                  <img
-                    src={user.photoURL}
-                    alt="user"
-                    className="object-cover w-full h-full"
-                  />
-                ) : (
-                  <FaUserCircle className="text-4xl text-gray-400" />
-                )}
-              </div>
-            </button>
-
-            {open && (
-              <ul className="absolute right-0 mt-3 p-4 shadow-lg bg-white rounded-xl w-64 border border-gray-200 flex flex-col gap-3 z-50">
-                <div className="flex items-center gap-3 border-b pb-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
-                    {user.photoURL ? (
-                      <img
-                        src={user.photoURL}
-                        alt="user"
-                        className="object-cover w-full h-full"
-                      />
-                    ) : (
-                      <FaUserCircle className="text-2xl text-gray-400" />
-                    )}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-700">
-                      {user.displayName}
-                    </p>
-                    <p className="text-sm text-gray-500 truncate">
-                      {user.email}
-                    </p>
-                  </div>
-                </div>
-
-                <NavLink
-                  to="/profile"
-                  onClick={() => setOpen(false)}
-                  className={({ isActive }) =>
-                    `px-3 py-2 rounded-lg text-gray-700 hover:bg-primary hover:text-white transition ${
-                      isActive ? "bg-primary text-white font-semibold" : ""
-                    }`
-                  }
-                >
-                  View Profile
-                </NavLink>
-
-                <button
-                  onClick={handleLogout}
-                  className="w-full px-3 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition cursor-pointer"
-                >
-                  <span className="flex justify-center items-center gap-1">
-                    <FiLogOut />
-                    Logout
-                  </span>
-                </button>
-              </ul>
-            )}
-          </div>
-        ) : (
-          <motion.div
-            className="rounded-xl p-[2px] overflow-hidden w-30"
-            animate={{
-              backgroundPositionX: ["0%", "100%", "0%"],
-            }}
-            transition={{
-              duration: 4,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-            style={{
-              backgroundImage:
-                "linear-gradient(90deg, #3B82F6, #06B6D4, #3B82F6)",
-              backgroundSize: "300% 100%",
-            }}
+      <div className="navbar-end relative flex items-center gap-2 justify-end">
+        <div className="flex items-center gap-2 border border-primary rounded-lg px-2 py-1 cursor-pointer">
+          <label
+            htmlFor="theme-toggle"
+            className="font-medium text-base cursor-pointer select-none"
           >
-            <Link
-              to="/auth/login"
-              className="block text-center text-white py-2 rounded-lg font-semibold hover:text-gray-300 transition-colors duration-300"
+            Theme
+          </label>
+
+          <label className="swap swap-rotate cursor-pointer">
+            {/* Checkbox controls the state */}
+            <input
+              id="theme-toggle"
+              type="checkbox"
+              onChange={(e) => handleTheme(e.target.checked)}
+            />
+
+            {/* 🌙 Dark Mode Icon (visible when unchecked = light mode) */}
+            <FaMoon className="swap-off text-blue-500 text-xl" />
+
+            {/* ☀️ Light Mode Icon (visible when checked = dark mode) */}
+            <FaSun className="swap-on text-yellow-400 text-xl" />
+          </label>
+        </div>
+        <div>
+          {user ? (
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setOpen(!open)}
+                className="btn btn-ghost btn-circle avatar cursor-pointer"
+              >
+                <div className="rounded-full border-2 border-primary overflow-hidden bg-gray-100 hover:scale-110 transition-transform duration-200">
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt="user"
+                      className="object-cover w-full h-full"
+                    />
+                  ) : (
+                    <FaUserCircle className="text-4xl text-gray-400" />
+                  )}
+                </div>
+              </button>
+
+              {open && (
+                <ul className="absolute right-0 mt-3 p-4 shadow-lg bg-white rounded-xl w-64 border border-gray-200 flex flex-col gap-3 z-50">
+                  <div className="flex items-center gap-3 border-b pb-3">
+                    <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+                      {user.photoURL ? (
+                        <img
+                          src={user.photoURL}
+                          alt="user"
+                          className="object-cover w-full h-full"
+                        />
+                      ) : (
+                        <FaUserCircle className="text-2xl text-gray-400" />
+                      )}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-700">
+                        {user.displayName}
+                      </p>
+                      <p className="text-sm text-gray-500 truncate">
+                        {user.email}
+                      </p>
+                    </div>
+                  </div>
+
+                  <NavLink
+                    to="/profile"
+                    onClick={() => setOpen(false)}
+                    className={({ isActive }) =>
+                      `px-3 py-2 rounded-lg text-gray-700 hover:bg-primary hover:text-white transition ${
+                        isActive ? "bg-primary text-white font-semibold" : ""
+                      }`
+                    }
+                  >
+                    View Profile
+                  </NavLink>
+
+                  <button
+                    onClick={handleLogout}
+                    className="w-full px-3 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition cursor-pointer"
+                  >
+                    <span className="flex justify-center items-center gap-1">
+                      <FiLogOut />
+                      Logout
+                    </span>
+                  </button>
+                </ul>
+              )}
+            </div>
+          ) : (
+            <motion.div
+              className="rounded-xl p-[2px] overflow-hidden w-30"
+              animate={{
+                backgroundPositionX: ["0%", "100%", "0%"],
+              }}
+              transition={{
+                duration: 4,
+                ease: "linear",
+                repeat: Infinity,
+              }}
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg, #3B82F6, #06B6D4, #3B82F6)",
+                backgroundSize: "300% 100%",
+              }}
             >
-              <span className="flex justify-center items-center gap-1">
-                <FiLogIn />
-                Login
-              </span>
-            </Link>
-          </motion.div>
-        )}
+              <Link
+                to="/auth/login"
+                className="block text-center text-white py-2 rounded-lg font-semibold hover:text-gray-300 transition-colors duration-300"
+              >
+                <span className="flex justify-center items-center gap-1">
+                  <FiLogIn />
+                  Login
+                </span>
+              </Link>
+            </motion.div>
+          )}
+        </div>
       </div>
     </div>
   );

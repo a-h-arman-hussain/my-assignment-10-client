@@ -57,66 +57,66 @@ const UpdateCourse = () => {
       </h2>
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block font-semibold mb-1">Title</label>
+          <label className="block text-primary font-semibold mb-1">Title</label>
           <input
             type="text"
             name="title"
             defaultValue={updateDetails.title}
-            className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full bg-none border text-black border-indigo-300  px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             required
           />
         </div>
 
         <div>
-          <label className="block font-semibold mb-1">Description</label>
+          <label className="block text-primary font-semibold mb-1">Description</label>
           <textarea
             name="description"
             defaultValue={updateDetails.description}
-            rows={4}
-            className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            rows={10}
+            className="w-full bg-none border text-black border-indigo-300  px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             required
           ></textarea>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block font-semibold mb-1">Price (৳)</label>
+            <label className="block text-primary font-semibold mb-1">Price (৳)</label>
             <input
               type="number"
               name="price"
               defaultValue={updateDetails.price}
-              className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="w-full bg-none border text-black border-indigo-300  px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
           </div>
           <div>
-            <label className="block font-semibold mb-1">Duration (days)</label>
+            <label className="block text-primary font-semibold mb-1">Duration (weeks)</label>
             <input
               type="number"
               name="duration"
               defaultValue={updateDetails.duration}
-              className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="w-full bg-none border text-black border-indigo-300  px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
           </div>
         </div>
         <div>
-          <label className="block font-semibold mb-1">Category</label>
+          <label className="block text-primary font-semibold mb-1">Category</label>
           <input
             type="text"
             name="category"
             defaultValue={updateDetails.category}
-            className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full bg-none border text-black border-indigo-300  px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
 
         <div>
-          <label className="block font-semibold mb-1">Image URL</label>
+          <label className="block text-primary font-semibold mb-1">Image URL</label>
           <input
             type="text"
             name="imageURL"
             defaultValue={updateDetails.imageURL}
-            className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full bg-none border text-black border-indigo-300  px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
 

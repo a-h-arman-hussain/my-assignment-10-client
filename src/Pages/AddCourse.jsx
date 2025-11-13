@@ -54,60 +54,70 @@ const AddCourse = () => {
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Title */}
         <div>
-          <label className="block font-semibold mb-1">Course Title</label>
+          <label className="block text-primary font-semibold mb-1">
+            Course Title
+          </label>
           <input
             type="text"
             name="title"
             required
             placeholder="Full-Stack Web Development Bootcamp"
-            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full bg-none border text-black border-indigo-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
 
         {/* Image URL */}
         <div>
-          <label className="block font-semibold mb-1">Image URL</label>
+          <label className="block text-primary font-semibold mb-1">
+            Image URL
+          </label>
           <input
             type="url"
             name="imageURL"
             required
             placeholder="https://example.com/course-image.jpg"
-            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full border text-black border-indigo-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Price */}
           <div>
-            <label className="block font-semibold mb-1">Price (৳)</label>
+            <label className="block text-primary font-semibold mb-1">
+              Price (৳)
+            </label>
             <input
               type="number"
               name="price"
               required
-              placeholder="12000"
-              className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              placeholder="Your Course Price"
+              className="w-full border text-black border-indigo-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
             />
           </div>
           {/* Duration */}
           <div>
-            <label className="block font-semibold mb-1">Duration</label>
+            <label className="block text-primary font-semibold mb-1">
+              Duration <span className="text-sm">(weeks)</span>
+            </label>
             <input
-              type="text"
+              type="number"
               name="duration"
               required
-              placeholder="12 weeks"
-              className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              placeholder="Your Course Duration"
+              className="w-full border text-black border-indigo-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
             />
           </div>
         </div>
         {/* Category */}
         <div>
-          <label className="block font-semibold mb-1">Category</label>
+          <label className="block text-primary font-semibold mb-1">
+            Category
+          </label>
           <input
             list="categoryOptions"
             name="category"
             placeholder="Select or add category"
             required
-            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full border text-black border-indigo-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           />
           <datalist id="categoryOptions">
             <option value="Web Development" />
@@ -119,13 +129,15 @@ const AddCourse = () => {
         </div>
         {/* Description */}
         <div>
-          <label className="block font-semibold mb-1">Description</label>
+          <label className="block text-primary font-semibold mb-1">
+            Description
+          </label>
           <textarea
             name="description"
             required
             placeholder="Briefly describe the course..."
-            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            rows="4"
+            className="w-full border text-black border-indigo-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            rows="10"
           ></textarea>
         </div>
 

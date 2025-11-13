@@ -81,32 +81,36 @@ const Profile = () => {
       {isModalOpen && (
         <div className="fixed inset-0 backdrop-blur-md flex items-center justify-center z-50">
           <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative border border-gray-200">
-            <h3 className="text-xl font-bold mb-4">Edit Profile</h3>
+            <h3 className="text-xl font-bold text-primary mb-4">
+              Edit Profile
+            </h3>
             <form onSubmit={handleUpdateProfile} className="space-y-4">
               <div>
-                <label className="block mb-1 font-medium">Name</label>
+                <label className="block text-primary mb-1 font-medium">
+                  Name
+                </label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full border px-4 py-2 rounded-lg"
+                  className="w-full border text-black border-indigo-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
                   required
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium">Photo URL</label>
+                <label className="block text-primary mb-1 font-medium">Photo URL</label>
                 <input
-                  type="text"
+                  type="url"
                   value={photoURL}
                   onChange={(e) => setPhotoURL(e.target.value)}
-                  className="w-full border px-4 py-2 rounded-lg"
+                  className="w-full border text-black border-indigo-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 />
               </div>
               <div className="flex justify-end gap-2 mt-4">
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="btn btn-outline px-4 py-2 rounded-lg hover:bg-gray-100 transition"
+                  className="btn btn-outline text-primary px-4 py-2 rounded-lg hover:bg-gray-100 hover:border-primary transition"
                 >
                   Cancel
                 </button>

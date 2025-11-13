@@ -30,13 +30,13 @@ const Courses = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <title>EduLearn | All Courses</title>
 
-      <h2 className="text-2xl md:text-4xl sm:text-5xl font-extrabold text-gray-800 text-center mb-12">
+      <h2 className="text-2xl md:text-4xl sm:text-5xl font-extrabold text-center mb-12">
         Our <span className="text-primary">Courses</span>
       </h2>
 
       {/* ✅ Dropdown + Dynamic Count */}
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-lg font-medium text-gray-700">
+        <h1 className="text-lg font-medium">
           Total Courses{" "}
           <span className=" text-sm">
             <span className=" font-bold text-primary">
@@ -50,13 +50,13 @@ const Courses = () => {
           <div
             tabIndex={0}
             role="button"
-            className="btn m-1 bg-primary text-white hover:bg-indigo-600"
+            className="btn m-1 bg-primary hover:bg-indigo-600"
           >
             {selectedCategory === "All" ? "Sort By Category" : selectedCategory}
           </div>
           <ul
             tabIndex={0}
-            className="dropdown-content menu bg-white border border-gray-200 rounded-xl z-[1] w-56 p-2 shadow-lg"
+            className="dropdown-content menu text-black bg-white border border-gray-200 rounded-xl z-[1] w-56 p-2 shadow-lg"
           >
             {categories.map((cat, i) => (
               <li key={i}>
